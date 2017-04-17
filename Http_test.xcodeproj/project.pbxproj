@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		1D21D6251E9E2AE300060933 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D21D6241E9E2AE300060933 /* main.m */; };
 		1D21D6281E9E2AE300060933 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D21D6271E9E2AE300060933 /* AppDelegate.m */; };
-		1D21D62B1E9E2AE300060933 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D21D62A1E9E2AE300060933 /* ViewController.m */; };
 		1D21D6301E9E2AE300060933 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D21D62F1E9E2AE300060933 /* Assets.xcassets */; };
 		1D21D63E1E9E2AE300060933 /* Http_testTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D21D63D1E9E2AE300060933 /* Http_testTests.m */; };
 		1D21D6491E9E2AE300060933 /* Http_testUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D21D6481E9E2AE300060933 /* Http_testUITests.m */; };
+		1D21D6611EA05BCA00060933 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D21D6601EA05BCA00060933 /* ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,8 +37,6 @@
 		1D21D6241E9E2AE300060933 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1D21D6261E9E2AE300060933 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D21D6271E9E2AE300060933 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1D21D6291E9E2AE300060933 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		1D21D62A1E9E2AE300060933 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		1D21D62F1E9E2AE300060933 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D21D6341E9E2AE300060933 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D21D6391E9E2AE300060933 /* Http_testTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Http_testTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,6 +46,8 @@
 		1D21D6481E9E2AE300060933 /* Http_testUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Http_testUITests.m; sourceTree = "<group>"; };
 		1D21D64A1E9E2AE300060933 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D21D65A1E9EDC9800060933 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		1D21D65F1EA05BCA00060933 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		1D21D6601EA05BCA00060933 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +101,8 @@
 			children = (
 				1D21D6261E9E2AE300060933 /* AppDelegate.h */,
 				1D21D6271E9E2AE300060933 /* AppDelegate.m */,
-				1D21D6291E9E2AE300060933 /* ViewController.h */,
-				1D21D62A1E9E2AE300060933 /* ViewController.m */,
+				1D21D65F1EA05BCA00060933 /* ViewController.h */,
+				1D21D6601EA05BCA00060933 /* ViewController.m */,
 				1D21D62F1E9E2AE300060933 /* Assets.xcassets */,
 				1D21D6341E9E2AE300060933 /* Info.plist */,
 				1D21D6231E9E2AE300060933 /* Supporting Files */,
@@ -275,9 +275,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D21D62B1E9E2AE300060933 /* ViewController.m in Sources */,
 				1D21D6281E9E2AE300060933 /* AppDelegate.m in Sources */,
 				1D21D6251E9E2AE300060933 /* main.m in Sources */,
+				1D21D6611EA05BCA00060933 /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +490,7 @@
 				1D21D64F1E9E2AE300060933 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1D21D6501E9E2AE300060933 /* Build configuration list for PBXNativeTarget "Http_testTests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +499,7 @@
 				1D21D6521E9E2AE300060933 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1D21D6531E9E2AE300060933 /* Build configuration list for PBXNativeTarget "Http_testUITests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +508,7 @@
 				1D21D6551E9E2AE300060933 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
