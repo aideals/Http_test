@@ -9,7 +9,7 @@
 #import "ViewController.h"
 
 @interface ViewController ()
-
+@property (nonatomic,strong) UIImageView *imageView;
 @end
 
 @implementation ViewController
@@ -17,12 +17,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initImageView];
     [self downLoadImage];
 }
 
-
-
-
+- (void)initImageView
+{
+    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(40, 55, 300, 450)];
+    self.imageView.backgroundColor = [UIColor greenColor];
+    [self.view addSubview:self.imageView];
+}
 
 
 - (void)downLoadImage
@@ -33,12 +37,15 @@
     NSURLSessionTask *task = [session downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
       
         NSString *imagePath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:response.suggestedFilename];
-    
+     
+        NSFileManager *file = [NSFileManager defaultManager];
+        [file moveItemAtURL:location toURL:[NSURL URLWithString:imagePath] error:nil];
+        
+        
         dispatch_async(dispatch_get_main_queue(), ^{
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(40, 55, 300, 450)];
-            imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imagePath]]];
-            [self.view addSubview:imageView];
-        });
+            self.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imagePath]]];
+            NSLog(@"imageView.image = %@",self.imageView.image);
+                    });
         
     }];
     
