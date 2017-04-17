@@ -10,6 +10,7 @@
 
 @interface ViewController ()
 @property (nonatomic,strong) UIImageView *imageView;
+@property (nonatomic) NSData *imageData;
 @end
 
 @implementation ViewController
@@ -32,24 +33,39 @@
 
 - (void)downLoadImage
 {
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSURL *url = [NSURL URLWithString:@"http://localhost:8080/MJServer/resources/images/minion_01.png"];
- 
-    NSURLSessionDownloadTask *task = [session downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-      
-        NSString *imagePath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:response.suggestedFilename];
-     
-        NSFileManager *file = [NSFileManager defaultManager];
-        [file moveItemAtURL:location toURL:[NSURL URLWithString:imagePath] error:nil];
-        
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imagePath]]];
-            NSLog(@"imageView.image = %@",self.imageView.image);
-                    });
-        
-    }];
+    NSString *urlString = [NSString stringWithFormat:@"http://localhost:8080/MJServer/resources/images/minion_01.png"];
+    urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSURLSessionDownloadTask *task = [session downloadTaskWithRequest:request completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error == nil) {
+            NSLog(@"location = %@",location.path);
+        
+            //NSString *dataPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
+            
+            NSError *fileError;
+            //NSFileManager *file = [NSFileManager defaultManager];
+            //[file moveItemAtPath:location.path toPath:dataPath error:&fileError];
+            //self.imageData = [file contentsAtPath:dataPath];
+            //self.imageView.image = [UIImage imageWithData:self.imageData];
+            NSFileManager *file = [NSFileManager defaultManager];
+            self.imageData = [file contentsAtPath:location.path];
+            self.imageView.image = [UIImage imageWithData:self.imageData];
+            
+            if (fileError == nil) {
+                NSLog(@"save success");
+            }
+            else {
+                NSLog(@"save error = %@",fileError);
+            }
+        } else {
+            NSLog(@"downLoad error");
+        }
+    }];
     [task resume];
 }
 
